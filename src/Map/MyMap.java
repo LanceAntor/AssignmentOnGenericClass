@@ -6,9 +6,9 @@ public class MyMap<K, V> {
     ArrayList<K> keys;
     ArrayList<V> values;
 
-    public MyMap(ArrayList<K> keys, ArrayList<V> values) {
-        this.keys = keys;
-        this.values = values;
+    public MyMap() {
+        keys = new ArrayList<>();
+        values = new ArrayList<>();
     }
 
     public void put(K key, V value){

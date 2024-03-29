@@ -1,79 +1,41 @@
 package Arithmetic;
 
-public class Arithmetic {
-    public Number num1;
-    public Number num2;
+public class Arithmetic <A extends  Number> {
+    public A num1;
+    public A num2;
 
-    public Arithmetic(Number num1, Number num2) {
-        this.num1 = num1;
-        this.num2 = num2;
-    }
-
-    public Number add(){
-        if(num1 instanceof Double || num2 instanceof Double){
-            return num1.doubleValue() + num2.doubleValue();
-        } else if (num1 instanceof Float || num2 instanceof Float) {
-            return num1.floatValue() + num2.floatValue();
-        } else if(num1 instanceof Long || num2 instanceof Long){
-            return num1.longValue() + num2.longValue();
+    public Arithmetic(A num1, A num2) {
+        if(isNumber(num1) && isNumber(num2)){
+            this.num1 = num1;
+            this.num2 = num2;
         } else {
-            return num1.intValue() + num2.intValue();
-        }
-    }
-    public Number subtract(){
-        if(num1 instanceof Double || num2 instanceof Double){
-            return num1.doubleValue() - num2.doubleValue();
-        } else if (num1 instanceof Float || num2 instanceof Float) {
-            return num1.floatValue() - num2.floatValue();
-        } else if(num1 instanceof Long || num2 instanceof Long){
-            return num1.longValue() - num2.longValue();
-        } else {
-            return num1.intValue() - num2.intValue();
+            throw new IllegalArgumentException("Invalid Input");
         }
     }
 
-    public Number multiply(){
-        if(num1 instanceof Double || num2 instanceof Double){
-            return num1.doubleValue() * num2.doubleValue();
-        } else if (num1 instanceof Float || num2 instanceof Float) {
-            return num1.floatValue() * num2.floatValue();
-        } else if(num1 instanceof Long || num2 instanceof Long){
-            return num1.longValue() * num2.longValue();
-        } else {
-            return num1.intValue() * num2.intValue();
-        }
+    private boolean isNumber(A num) {
+        return num instanceof Integer || num instanceof Double || num instanceof Float || num instanceof Short || num instanceof Long;
     }
-    public Number divide(){
-        if(num1 instanceof Double || num2 instanceof Double){
-            return num1.doubleValue() / num2.doubleValue();
-        } else if (num1 instanceof Float || num2 instanceof Float) {
-            return num1.floatValue() / num2.floatValue();
-        } else if(num1 instanceof Long || num2 instanceof Long){
-            return num1.longValue() / num2.longValue();
-        } else {
-            return num1.intValue() / num2.intValue();
-        }
+
+    public double add(){
+        return num1.doubleValue() + num2.doubleValue();
     }
-    public Number getMin(){
-        if(num1 instanceof Double || num2 instanceof Double){
-            return Math.min(num1.doubleValue(), num2.doubleValue());
-        } else if (num1 instanceof Float || num2 instanceof Float) {
-            return Math.min(num1.floatValue(), num2.floatValue());
-        } else if(num1 instanceof Long || num2 instanceof Long){
-            return Math.min(num1.longValue(), num2.longValue());
-        } else {
-            return Math.min(num1.intValue(), num2.intValue());
-        }
+    public double subtract(){
+        return num1.doubleValue() - num2.doubleValue();
     }
-    public Number getMax(){
-        if(num1 instanceof Double || num2 instanceof Double){
-            return Math.max(num1.doubleValue(), num2.doubleValue());
-        } else if (num1 instanceof Float || num2 instanceof Float) {
-            return Math.max(num1.floatValue(), num2.floatValue());
-        } else if(num1 instanceof Long || num2 instanceof Long){
-            return Math.max(num1.longValue(), num2.longValue());
-        } else {
-            return Math.max(num1.intValue(), num2.intValue());
+    public double multiply(){
+        return num1.doubleValue() * num2.doubleValue();
+    }
+    public double divide(){
+        if(num2.doubleValue() == 0){
+            throw new ArithmeticException("Cannot Divide A Zero");
         }
+        return num1.doubleValue() / num2.doubleValue();
+    }
+    public double getMax(){
+       return Math.max(num1.doubleValue(), num2.doubleValue());
+    }
+    public double getMin(){
+        return Math.max(num1.doubleValue(), num2.doubleValue());
     }
 }
